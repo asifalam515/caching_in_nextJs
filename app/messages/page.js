@@ -1,9 +1,10 @@
 import Messages from "@/components/messages";
-
+import { connection } from "next/server";
 export default async function MessagesPage() {
   const response = await fetch("http://localhost:8080/messages", {
-    // cache: "force-cache", aggresive caching . catch everything you find
-    cache: "no-store", //this place the data should not be cached
+    next: {
+      revalidate: 5,
+    },
   });
   // headers: {
   //   "X-ID": "page",
